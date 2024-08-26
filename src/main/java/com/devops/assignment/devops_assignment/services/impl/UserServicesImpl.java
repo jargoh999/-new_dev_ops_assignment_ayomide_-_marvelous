@@ -16,6 +16,7 @@ public class UserServicesImpl implements UserServices {
     private final Users users;
     @Override
     public RegisterResponse registerUser(RegisterRequest registerRequest) {
+        if(users.getUserByEmailIgnoreCase(registerRequest.getEmail())!=null)throw new RuntimeException("User already exists");
         User user = User.builder().username(registerRequest.getUsername())
                 .email(registerRequest.getEmail())
                 .password(registerRequest.getPassword())
