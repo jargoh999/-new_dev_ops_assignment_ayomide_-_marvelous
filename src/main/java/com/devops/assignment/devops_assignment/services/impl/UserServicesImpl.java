@@ -29,7 +29,10 @@ public class UserServicesImpl implements UserServices {
 
     @Override
     public LoginResponse logIn(LoginRequest loginRequest) {
-        return null;
+        User user=users.getUserByEmailIgnoreCase(loginRequest.getEmail());
+        if(user==null)throw new RuntimeException("invalid credentials");
+        if(!(user.getPassword().equals(loginRequest.getPassword())))throw new RuntimeException("invalid credentials");
+        return LoginResponse.builder().message("successfully logged in").build();
     }
 
 
