@@ -13,10 +13,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up JDK 17
+      - name: Set up JDK 21
         uses: actions/checkout@v2
         with:
-          java-version: '17'
+          java-version: '21'
           distribution: 'temurin'
           cache: maven
 
@@ -36,7 +36,8 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Docker image
-        run: docker build -t dee/my-app:latest .
+        run: docker buildx build --tag dev_ops:latest .
+
 
       - name: Push Docker image to Docker Hub
         run: docker push dee/my-app:latest
