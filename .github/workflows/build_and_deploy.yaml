@@ -40,4 +40,4 @@ jobs:
 
 
       - name: Push Docker image to Docker Hub
-        run: docker push jargoh999/my-web-app
+        run: docker push jargoh999/dev_ops:latest
