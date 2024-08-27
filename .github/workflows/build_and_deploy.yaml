@@ -36,8 +36,8 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Docker image
-        run: docker buildx build --tag dev_ops:latest .
+        run: docker build -t  jargoh999/my-web-app:latest .
 
 
       - name: Push Docker image to Docker Hub
-        run: docker push jargoh999/my-web-app dev_ops:latest
+        run: docker push jargoh999/my-web-app:latest
