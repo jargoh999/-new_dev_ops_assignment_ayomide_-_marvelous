@@ -31,6 +31,8 @@ public class UserServicesImpl implements UserServices {
     public LoginResponse logIn(LoginRequest loginRequest) {
         User user=users.getUserByEmailIgnoreCase(loginRequest.getEmail());
         if(user==null)throw new RuntimeException("invalid credentials");
+        user.setLoggedIn(true);
+        users.save(user);
         if(!(user.getPassword().equals(loginRequest.getPassword())))throw new RuntimeException("invalid credentials");
         return LoginResponse.builder().message("successfully logged in").build();
     }
