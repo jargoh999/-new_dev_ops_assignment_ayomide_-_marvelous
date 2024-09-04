@@ -52,7 +52,6 @@ set_java_home() {
     else
       JAVACMD="$JAVA_HOME/bin/java"
       JAVACCMD="$JAVA_HOME/bin/javac"
-
       if [ ! -x "$JAVACMD" ] || [ ! -x "$JAVACCMD" ]; then
         echo "The JAVA_HOME environment variable is not defined correctly, so mvnw cannot run." >&2
         echo "JAVA_HOME is set to \"$JAVA_HOME\", but \"\$JAVA_HOME/bin/java\" or \"\$JAVA_HOME/bin/javac\" does not exist." >&2
@@ -70,14 +69,12 @@ set_java_home() {
       'unset' -f command 2>/dev/null
       'command' -v javac
     )" || :
-
     if [ ! -x "${JAVACMD-}" ] || [ ! -x "${JAVACCMD-}" ]; then
       echo "The java/javac command does not exist in PATH nor is JAVA_HOME set, so mvnw cannot run." >&2
       return 1
     fi
   fi
 }
-
 # hash string like Java String::hashCode
 hash_string() {
   str="${1:-}" h=0
@@ -88,15 +85,12 @@ hash_string() {
   done
   printf %x\\n $h
 }
-
 verbose() { :; }
 [ "${MVNW_VERBOSE-}" != true ] || verbose() { printf %s\\n "${1-}"; }
-
 die() {
   printf %s\\n "$1" >&2
   exit 1
 }
-
 trim() {
   # MWRAPPER-139:
   #   Trims trailing and leading whitespace, carriage returns, tabs, and linefeeds.
