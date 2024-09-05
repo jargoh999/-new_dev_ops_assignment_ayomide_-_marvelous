@@ -91,8 +91,10 @@ jobs:
           echo "${{ secrets.AWS_PRIVATE_KEY }}" > private_key.pem
           chmod 600 private_key.pem
           ssh -o StrictHostKeyChecking=no -i private_key.pem ubuntu@${{ secrets.AWS_HOST }} << 'EOF'
+            sudo chmod 666 /var/run/docker.sock
             docker pull jargoh999/my-web-app:latest
             docker stop my-web-app || true
             docker rm my-web-app || true
             docker run -d --name my-web-app -p 80:80 jargoh999/my-web-app:latest
           EOF
+     
