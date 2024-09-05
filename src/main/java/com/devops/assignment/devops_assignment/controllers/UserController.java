@@ -33,7 +33,7 @@ public class UserController {
         }
     }
     @GetMapping("/hello")
-    public String hello(){
-       return "hello";
+    public ResponseEntity<?> helloWorld(){
+       return new ResponseEntity<>("hello bro",OK);
     }
 }
